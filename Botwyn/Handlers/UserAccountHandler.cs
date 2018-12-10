@@ -9,7 +9,7 @@ namespace Botwyn.Handlers
     public static class UserAccounts
     {
         private static List<UserAccount> accounts;
-        private static string accountsFile = @"./Data/UserAccounts/Accounts.json";
+        private static string accountsFile = "./Data/UserAccounts/Accounts.json";
 
         static UserAccounts()
         {

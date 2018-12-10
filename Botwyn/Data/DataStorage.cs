@@ -11,6 +11,10 @@ namespace Botwyn.Data
         public static void SaveUserAccounts(IEnumerable<UserAccount> accounts, string filePath)
         {
             string json = JsonConvert.SerializeObject(accounts, Formatting.Indented);
+            //using (TextWriter tw = new StreamWriter(filePath))
+            //{
+            //    tw.WriteLine(json);
+            //}
             File.WriteAllText(filePath, json);
         }
 

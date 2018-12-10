@@ -77,6 +77,7 @@ namespace Botwyn.Services
             if (!result.Result.IsSuccess && socketMessage.Channel.Id != 504318315091722270) 
             {
                 context.Channel.SendMessageAsync(result.Result.ErrorReason);
+                context.Channel.SendMessageAsync(result.Result.Error.Value.ToString());
             }
 
             return result;
