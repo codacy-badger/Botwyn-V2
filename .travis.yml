@@ -2,5 +2,5 @@
 mono: none
 dotnet: 2.1.300
 script:
-  - dotnet add package Discord -s https://www.myget.org/F/discord-net/api/v3/index.json
+  - dotnet add ./Botwyn/Botwyn.csproj package -s Discord https://www.myget.org/F/discord-net/api/v3/index.json
   - dotnet build
