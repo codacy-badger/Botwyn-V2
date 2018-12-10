@@ -7,3 +7,6 @@ obj/*
 Botwyn/bin/*
 Botwyn/obj/*
 Botwyn/Lavalink.jar
+.vs/Botwyn/v15/.suo
+.vs/Botwyn/v15/Server/sqlite3/storage.ide-shm
+.vs/Botwyn/v15/Server/sqlite3/storage.ide-wal
