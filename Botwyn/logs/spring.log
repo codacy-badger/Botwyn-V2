@@ -198,3 +198,9 @@ java.io.IOException: UT002002: Channel is closed
 2018-12-10 01:57:18.263  INFO 2760 --- [XNIO-2 I/O-7] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:60315 -- CloseStatus[code=1006, reason=]
 2018-12-10 01:57:18.264  INFO 2760 --- [XNIO-2 I/O-7] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
 2018-12-10 01:57:18.265  INFO 2760 --- [XNIO-2 I/O-7] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring disabled.
+2018-12-10 02:28:03.663  INFO 2760 --- [XNIO-2 task-20] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:61722
+2018-12-10 02:28:03.667  INFO 2760 --- [XNIO-2 task-20] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring enabled, reporting results every 2 minutes.
+2018-12-10 02:28:03.676  INFO 2760 --- [XNIO-2 task-20] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:61722
+2018-12-10 02:28:28.979  INFO 2760 --- [XNIO-2 I/O-6] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:61722 -- CloseStatus[code=1006, reason=]
+2018-12-10 02:28:28.980  INFO 2760 --- [XNIO-2 I/O-6] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2018-12-10 02:28:28.981  INFO 2760 --- [XNIO-2 I/O-6] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring disabled.

@@ -19,7 +19,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Discord.Net" Version="2.0.0-beta2-01039" />
+    <PackageReference Include="Discord.Net" Version="2.0.0-beta" />
     <PackageReference Include="Geocoding.Core" Version="4.0.1" />
     <PackageReference Include="Geocoding.Google" Version="4.0.1" />
     <PackageReference Include="HyperEx" Version="1.0.10" />

@@ -17,7 +17,7 @@ namespace Botwyn.Services
         
         public async Task InitializeAsync(Assembly assembly)
         {
-            await CommandService.AddModulesAsync(assembly, Provider);
+            await CommandService.AddModulesAsync(assembly/*, Provider*/);
             var json = string.Empty;
             BotConfig cfg = new BotConfig();
             if (!File.Exists("config.json"))
