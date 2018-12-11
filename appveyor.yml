@@ -1,5 +1,5 @@
 version: 1.0.{build}
-nuget sources
+nuget sources:
 Resgistered Sources:
   1.  nuget.org [Enabled]
       https://api.nuget.org/v3/index.json
