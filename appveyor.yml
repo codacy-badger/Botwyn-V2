@@ -1,6 +1,6 @@
 version: 1.0.{build}
 artifacts:
 - path: '**\*.nupkg'
-name: Botwyn
+    name: Botwyn
 build_script:
 - cmd: dotnet build
