@@ -55,6 +55,47 @@ namespace Botwyn.Handlers
             return result.ToList();
         }
 
+        public enum SpecType
+        {
+            DPS = 0,
+            Healer = 10,
+            Tank = 20
+        }
+
+        public static List<UserAccount> GetTrials()
+        {
+            var result = from a in accounts
+                         where a.IsTrial == true
+                         select a;
+            return result.ToList();
+        }
+
+        public static List<UserAccount> GetSpec(SpecType spec)
+        {
+            IEnumerable<UserAccount> result = null;
+            switch (spec)
+            {
+                case SpecType.DPS:
+                    result = from a in accounts
+                                 where a.MainSpec.ToLower() == "dps"
+                                 select a;
+                    break;
+                case SpecType.Healer:
+                    result = from a in accounts
+                                 where a.MainSpec.ToLower() == "healer"
+                                 select a;
+                    break;
+                case SpecType.Tank:
+                    result = from a in accounts
+                                 where a.MainSpec.ToLower() == "tank"
+                                 select a;
+                    break;
+                default:
+                    break;
+            }
+            return result.ToList();
+        }
+
         private static UserAccount CreateUserAccount(ulong id)
         {
             var NewAccount = new UserAccount()
@@ -69,7 +110,8 @@ namespace Botwyn.Handlers
                 OwnReports = 0,
                 AdminReports = 0,
                 RaidsMissedWithReason = 0,
-                ReturningForNextRaid = false
+                ReturningForNextRaid = false,
+                IsTrial = false
             };
             accounts.Add(NewAccount);
             SaveAccounts();
@@ -88,7 +130,8 @@ namespace Botwyn.Handlers
             AdminReport = 70,
             MissedRaidWithReason = 80,
             MissedRaidNoReason = 90,
-            ReturningForNextRaid = 100
+            ReturningForNextRaid = 100,
+            IsTrial = 110
         }
 
         public static void AccountUpdate(SocketUser user, string param, UpdateType type)
@@ -108,6 +151,10 @@ namespace Botwyn.Handlers
             var returning = false;
             if (param.ToLower() == "true")
                 returning = true;
+
+            var trial = false;
+            if (param.ToLower() == "true")
+                trial = true;
 
             switch (type)
             {
@@ -143,6 +190,9 @@ namespace Botwyn.Handlers
                     break;
                 case UpdateType.ReturningForNextRaid:
                     account.ReturningForNextRaid = returning;
+                    break;
+                case UpdateType.IsTrial:
+                    account.IsTrial = trial;
                     break;
                 default:
                     break;

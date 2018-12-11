@@ -14,45 +14,7 @@ namespace Botwyn.Modules
     {
         [Command(RunMode = RunMode.Async), Name("Account"), Summary("Display your Discord and World Of Warcraft Infomation.")]
         public async Task Account()
-        {
-            var account = UserAccounts.GetAccount(Context.User);
-            var descripitionBuilder = new StringBuilder();
-            var user = (SocketGuildUser)Context.User;
-            descripitionBuilder.Append
-                ($"__**Discord Info**__\n" +
-                $"**Name**: {Context.User.Username}\n" +
-                $"**Joined At**: {user.JoinedAt}\n" +
-                $"**Current Status**: {user.Status}\n" +
-                $"**Current Nickname**: {user.Nickname}\n" +
-                $"\n**__Guild Info__**\n" +
-                $"**Guild Rank**: {account.GuildRank}\n" +
-                $"**Returning For Next Tier**: {account.ReturningForNextRaid}\n" +
-                $"**Wow Main**: {account.MainChar}\n" +
-                $"**Main Spec**: {account.MainSpec}\n" +
-                $"**Main Alt**: {account.WowAlt}\n " +
-                $"**Alt's Spec**: {account.WowAltSpec}\n" +
-                $"\n__**Report Info**__\n" +
-                $"**Created Reports**: {account.ReportMade}\n" +
-                $"**User Reports**: {account.OwnReports}\n");
-
-            if (account.AdminReports == 0) descripitionBuilder.Append($"They currently have no Admin reports against them.\n");
-            else descripitionBuilder.Append($"**Admin Reports**: {account.AdminReports}\n");
-
-            if (account.RaidsMissedWithReason == 0 && account.RaidsMissedNoReason == 0) descripitionBuilder.Append($"They've Currently not missed any raids.\n");
-            if (account.RaidsMissedWithReason > 0) descripitionBuilder.Append($"**Raids Missed With Reason**: {account.RaidsMissedWithReason}\n");
-            if (account.RaidsMissedNoReason > 0 && account.RaidsMissedNoReason < 4) descripitionBuilder.Append($"**Raids Missed No Reason**: {account.RaidsMissedNoReason}\n");
-            if (account.RaidsMissedNoReason > 4) descripitionBuilder.Append($"\n🛑__**{Context.User.Username.ToUpper()} HAS NOW MISSED {account.RaidsMissedNoReason} RAIDS WITH NO REASON**__🛑");
-
-            var description = descripitionBuilder.ToString();
-            var embed = new EmbedBuilder()
-                .WithTitle($"{Context.User.Username} Guild Account Details")
-                .WithCurrentTimestamp()
-                .WithColor(Color.DarkTeal)
-                .WithThumbnailUrl(Context.User.GetAvatarUrl())
-                .WithDescription(description);
-
-            await ReplyAsync("", false, embed.Build());
-        }
+            => await Account(Context.User);
 
         [Command(RunMode = RunMode.Async), Name("Account"), Summary("Display your Discord and World Of Warcraft Infomation.")]
         public async Task Account(SocketUser user)
@@ -69,6 +31,7 @@ namespace Botwyn.Modules
                 $"\n**__Guild Info__**\n" +
                 $"**Guild Rank**: {account.GuildRank}\n" +
                 $"**Returning For Next Tier**: {account.ReturningForNextRaid}\n" +
+                $"**Player Is Trial Raider**: {account.IsTrial}\n" +
                 $"**Wow Main**: {account.MainChar}\n" +
                 $"**Main Spec**: {account.MainSpec}\n" +
                 $"**Main Alt**: {account.WowAlt}\n " +
@@ -147,8 +110,30 @@ namespace Botwyn.Modules
             [Command("Spec"), Name("Account Update Spec"), Summary("Allows you to update your World of Warcraft Spec.")]
             public async Task UpdateWowSpec(SocketUser user, [Summary("The current spec you are playing in World of Warcraft")][Remainder]string spec)
             {
-                UserAccounts.AccountUpdate(user, spec, UserAccounts.UpdateType.WowMainSpec);
-                await ReplyAsync("", false, EmbedHandler.CreateEmbed("Account Updated", $"**The Current Main Spec Has Been Set To: __{spec}__**", EmbedHandler.EmbedMessageType.Success, true));
+                if (spec.ToLower() != "tank" || spec.ToLower() != "dps" || spec.ToLower() != "healer")
+                {
+                    await ReplyAsync("Sorry the accepted specs are: ``Tank``, ``DPS``, ``Healer``");
+                }
+                else
+                {
+                    switch (spec.ToLower())
+                    {
+                        case "dps":
+                            spec = "DPS";
+                            break;
+                        case "tank":
+                            spec = "Tank";
+                            break;
+                        case "healer":
+                            spec = "Healer";
+                            break;
+                        default:
+                            break;
+                    }
+                    UserAccounts.AccountUpdate(user, spec, UserAccounts.UpdateType.WowMainSpec);
+                    await ReplyAsync("", false, EmbedHandler.CreateEmbed("Account Updated", $"**The Current Main Spec Has Been Set To: __{spec}__**", EmbedHandler.EmbedMessageType.Success, true));
+                }
+                
             }
             #endregion
 
@@ -184,11 +169,23 @@ namespace Botwyn.Modules
         {
             var descriptionBuilder = new StringBuilder();
             var returningPlayers = UserAccounts.GetReturningMemebers();
+            var returningDPS = UserAccounts.GetSpec(UserAccounts.SpecType.DPS);
+            var returningHealers = UserAccounts.GetSpec(UserAccounts.SpecType.Healer);
+            var returningTanks = UserAccounts.GetSpec(UserAccounts.SpecType.Tank);
+            var trials = UserAccounts.GetTrials();
+
             foreach (var player in returningPlayers)
             {
                 descriptionBuilder.Append($"``{player.MainChar}`` ");
             }
-            await ReplyAsync("", false, EmbedHandler.CreateEmbed("Returning Players For Next Tier", $"{descriptionBuilder.ToString()} \n\n **We currently have __{returningPlayers.Count}/20__**", EmbedHandler.EmbedMessageType.Info, true));
+            await ReplyAsync("", false, EmbedHandler.CreateEmbed(
+                "Returning Players For Next Tier", $"{descriptionBuilder.ToString()} " +
+                $"\n\n We currently have **__{returningPlayers.Count}/20__** Players." +
+                $"\n Current Setup: **__{returningTanks.Count}/{returningHealers.Count}/{returningDPS.Count}__**\n\n" +
+                $"Tanks Needed: {2 - returningTanks.Count}\n" +
+                $"Healers Needed: {4 - returningHealers.Count}\n" +
+                $"DPS Required: {14 - returningDPS.Count}\n\n" +
+                $"We Current Have {trials.Count} Trial Raiders.", EmbedHandler.EmbedMessageType.Info, true));
         }
     }
 }

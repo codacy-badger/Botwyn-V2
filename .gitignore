@@ -17,3 +17,7 @@ Botwyn/Lavalink.jar
 .vs/Botwyn/v15/Server/sqlite3/storage.ide-wal
 Botwyn/logs/spring.log
 .vs/Botwyn/v15/.suo
+Botwyn/logs/spring.log
+*.log
+*.ide
+*.ide-wal

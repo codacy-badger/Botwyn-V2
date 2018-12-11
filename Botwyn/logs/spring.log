@@ -142,3 +142,36 @@
 2018-12-11 03:50:38.512  INFO 2760 --- [XNIO-2 I/O-6] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:59162 -- CloseStatus[code=1006, reason=]
 2018-12-11 03:50:38.513  INFO 2760 --- [XNIO-2 I/O-6] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
 2018-12-11 03:50:38.514  INFO 2760 --- [XNIO-2 I/O-6] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring disabled.
+2018-12-11 05:27:42.798  INFO 2760 --- [XNIO-2 task-45] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:64739
+2018-12-11 05:27:42.838  INFO 2760 --- [XNIO-2 task-45] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring enabled, reporting results every 2 minutes.
+2018-12-11 05:27:42.860  INFO 2760 --- [XNIO-2 task-45] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:64739
+2018-12-11 05:27:55.384  INFO 2760 --- [XNIO-2 I/O-7] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:64739 -- CloseStatus[code=1006, reason=]
+2018-12-11 05:27:55.385  INFO 2760 --- [XNIO-2 I/O-7] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2018-12-11 05:27:55.390  INFO 2760 --- [XNIO-2 I/O-7] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring disabled.
+2018-12-11 05:28:27.378  INFO 2760 --- [XNIO-2 task-46] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:64778
+2018-12-11 05:28:27.382  INFO 2760 --- [XNIO-2 task-46] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring enabled, reporting results every 2 minutes.
+2018-12-11 05:28:27.389  INFO 2760 --- [XNIO-2 task-46] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:64778
+2018-12-11 05:28:45.224  INFO 2760 --- [XNIO-2 I/O-6] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:64778 -- CloseStatus[code=1006, reason=]
+2018-12-11 05:28:45.225  INFO 2760 --- [XNIO-2 I/O-6] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2018-12-11 05:28:45.226  INFO 2760 --- [XNIO-2 I/O-6] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring disabled.
+2018-12-11 05:29:10.236  INFO 2760 --- [XNIO-2 task-47] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:64816
+2018-12-11 05:29:10.240  INFO 2760 --- [XNIO-2 task-47] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring enabled, reporting results every 2 minutes.
+2018-12-11 05:29:10.246  INFO 2760 --- [XNIO-2 task-47] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:64816
+2018-12-11 05:33:18.002  INFO 2760 --- [XNIO-2 I/O-4] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:64816 -- CloseStatus[code=1006, reason=]
+2018-12-11 05:33:18.002  INFO 2760 --- [XNIO-2 I/O-4] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2018-12-11 05:33:18.004  INFO 2760 --- [XNIO-2 I/O-4] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring disabled.
+2018-12-11 05:35:30.610  INFO 2760 --- [XNIO-2 task-48] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:65083
+2018-12-11 05:35:30.615  INFO 2760 --- [XNIO-2 task-48] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring enabled, reporting results every 2 minutes.
+2018-12-11 05:35:30.621  INFO 2760 --- [XNIO-2 task-48] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:65083
+2018-12-11 05:35:56.087  INFO 2760 --- [XNIO-2 I/O-7] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:65083 -- CloseStatus[code=1006, reason=]
+2018-12-11 05:35:56.088  INFO 2760 --- [XNIO-2 I/O-7] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2018-12-11 05:35:56.089  INFO 2760 --- [XNIO-2 I/O-7] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring disabled.
+2018-12-11 05:45:40.971  INFO 2760 --- [XNIO-2 task-49] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:65517
+2018-12-11 05:45:40.974  INFO 2760 --- [XNIO-2 task-49] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring enabled, reporting results every 2 minutes.
+2018-12-11 05:45:40.982  INFO 2760 --- [XNIO-2 task-49] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:65517
+2018-12-11 05:47:17.843  INFO 2760 --- [XNIO-2 I/O-1] lavalink.server.io.SocketServer          : Connection closed from /127.0.0.1:65517 -- CloseStatus[code=1006, reason=]
+2018-12-11 05:47:17.843  INFO 2760 --- [XNIO-2 I/O-1] lavalink.server.io.SocketContext         : Shutting down 0 playing players.
+2018-12-11 05:47:17.844  INFO 2760 --- [XNIO-2 I/O-1] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring disabled.
+2018-12-11 05:49:00.383  INFO 2760 --- [XNIO-2 task-50] l.server.io.HandshakeInterceptorImpl     : Incoming connection from /127.0.0.1:49274
+2018-12-11 05:49:00.387  INFO 2760 --- [XNIO-2 task-50] c.s.d.l.tools.GarbageCollectionMonitor   : GC monitoring enabled, reporting results every 2 minutes.
+2018-12-11 05:49:00.392  INFO 2760 --- [XNIO-2 task-50] lavalink.server.io.SocketServer          : Connection successfully established from /127.0.0.1:49274

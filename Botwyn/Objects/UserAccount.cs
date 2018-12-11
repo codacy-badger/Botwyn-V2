@@ -19,6 +19,6 @@ namespace Botwyn.Objects
         public int RaidsMissedWithReason { get; set; }
         public int RaidsMissedNoReason { get; set; }
         public bool ReturningForNextRaid { get; set; }
-
+        public bool IsTrial { get; set; }
     }
 }
