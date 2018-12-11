@@ -1,4 +1,3 @@
-
 application.yml
 *.gz
 bin/*
@@ -8,16 +7,7 @@ Botwyn/bin/*
 Botwyn/obj/*
 Botwyn/Lavalink.jar
 Botwyn/Properties/*
-.vs/Botwyn/v15/.suo
-.vs/Botwyn/v15/Server/sqlite3/storage.ide-shm
-.vs/Botwyn/v15/Server/sqlite3/storage.ide-wal
-.vs/Botwyn/DesignTimeBuild/.dtbcache
-.vs/Botwyn/v15/.suo
-.vs/Botwyn/v15/Server/sqlite3/storage.ide
-.vs/Botwyn/v15/Server/sqlite3/storage.ide-shm
-.vs/Botwyn/v15/Server/sqlite3/storage.ide-wal
 Botwyn/logs/spring.log
-.vs/Botwyn/v15/.suo
 *.log
 *.ide
 *.ide-wal
