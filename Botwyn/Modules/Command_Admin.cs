@@ -114,5 +114,25 @@ namespace Botwyn.Modules
             await Context.Channel.SendMessageAsync("", false, embed);
             await Context.Message.DeleteAsync();
         }
+
+        [Command("Prefix")]
+        public async Task ChangePrefix(string prefix)
+        {
+            try
+            {
+                char newPrefix = Convert.ToChar(prefix);
+                GlobalProperties.Config = new BotConfig()
+                {
+                    DiscordToken = GlobalProperties.Config.DiscordToken,
+                    Prefix = newPrefix
+                };
+                DataStorage.SaveConfig(GlobalProperties.ConfigPath);
+            }
+            catch (Exception e)
+            {
+                await ReplyAsync($"Erorr: {e.Message}");
+            }
+            
+        }
     }
 }

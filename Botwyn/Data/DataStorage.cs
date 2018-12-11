@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using Botwyn.Handlers;
 using Botwyn.Objects;
+using Botwyn.Services;
 using Newtonsoft.Json;
 
 namespace Botwyn.Data
@@ -20,7 +22,15 @@ namespace Botwyn.Data
 
         public static void SaveConfig(string filepath)
         {
-            //TODO SAVE/OVERWRITE OLD CONFIG WITH NEW COFIG DATA IF COMMAND IS USED.
+            if (SaveExists(filepath))
+            {
+                string json = JsonConvert.SerializeObject(GlobalProperties.Config, Formatting.Indented);
+                File.WriteAllText(filepath, json);
+            }
+            else
+            {
+                LoggingService.LogCritical("Discord", "Config File Does Not Exists.");
+            }
         }
         //Get all userAccounts
         public static IEnumerable<UserAccount> GetUserAccounts(string filePath)
