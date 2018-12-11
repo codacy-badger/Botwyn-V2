@@ -133,7 +133,7 @@ namespace Botwyn.Modules
                     UserAccounts.AccountUpdate(user, spec, UserAccounts.UpdateType.WowMainSpec);
                     await ReplyAsync("", false, EmbedHandler.CreateEmbed("Account Updated", $"**The Current Main Spec Has Been Set To: __{spec}__**", EmbedHandler.EmbedMessageType.Success, true));
                 }
-                
+
             }
             #endregion
 
@@ -158,8 +158,35 @@ namespace Botwyn.Modules
             [Command("Returning"), Name("Account Update Returning"), Summary("Allows you to update your World of Warcraft Returning Status.")]
             public async Task UpdateReturningForNextRaid(SocketUser user, [Summary("The current alt you have in World of Warcraft")][Remainder]string returning)
             {
-                UserAccounts.AccountUpdate(user, returning, UserAccounts.UpdateType.ReturningForNextRaid);
-                await ReplyAsync("", false, EmbedHandler.CreateEmbed("Account Updated", $"**The Returning Status Spec Has Been Set To: __{returning}__**", EmbedHandler.EmbedMessageType.Success, true));
+                if (returning.ToLower() != "true" && returning.ToLower() != "false")
+                {
+                    await ReplyAsync("Error: Accepted values: True / False");
+                }
+                else
+                {
+                    UserAccounts.AccountUpdate(user, returning, UserAccounts.UpdateType.ReturningForNextRaid);
+                    await ReplyAsync("", false, EmbedHandler.CreateEmbed("Account Updated", $"**The Returning Status Has Been Set To: __{returning}__**", EmbedHandler.EmbedMessageType.Success, true));
+                }
+            }
+            #endregion
+
+            #region Is Trial
+            [Command("Trial"), Name("Account Update Trial"), Summary("Allows you to update your World of Warcraft Returning Status.")]
+            public async Task UpdateIstrial([Summary("The current alt you have in World of Warcraft")][Remainder]string returning)
+                    => await UpdateIstrial(Context.User, returning);
+
+            [Command("Trial"), Name("Account Update Trial"), Summary("Allows you to update your World of Warcraft Returning Status.")]
+            public async Task UpdateIstrial(SocketUser user, [Summary("The current alt you have in World of Warcraft")][Remainder]string returning)
+            {
+                if (returning.ToLower() != "true" && returning.ToLower() != "false")
+                {
+                    await ReplyAsync("Error: Accepted values: True / False");
+                }
+                else
+                {
+                    UserAccounts.AccountUpdate(user, returning, UserAccounts.UpdateType.IsTrial);
+                    await ReplyAsync("", false, EmbedHandler.CreateEmbed("Account Updated", $"**The Trial Status Has Been Set To: __{returning}__**", EmbedHandler.EmbedMessageType.Success, true));
+                }
             }
             #endregion
         }
