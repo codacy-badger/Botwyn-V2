@@ -18,6 +18,10 @@ namespace Botwyn.Data
             File.WriteAllText(filePath, json);
         }
 
+        public static void SaveConfig(string filepath)
+        {
+            //TODO SAVE/OVERWRITE OLD CONFIG WITH NEW COFIG DATA IF COMMAND IS USED.
+        }
         //Get all userAccounts
         public static IEnumerable<UserAccount> GetUserAccounts(string filePath)
         {

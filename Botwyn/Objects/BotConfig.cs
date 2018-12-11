@@ -9,5 +9,7 @@ namespace Botwyn.Services
         
         [JsonProperty("wowToken")]
         public string WoWToken { get; private set; } = string.Empty;
+
+        public char Token { get; set; }
     }
 }

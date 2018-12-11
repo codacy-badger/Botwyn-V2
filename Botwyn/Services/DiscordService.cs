@@ -15,15 +15,14 @@ namespace Botwyn.Services
 {
     public sealed class DiscordService : BaseService
     {
-        
+        private static BotConfig Config = new BotConfig();
         public async Task InitializeAsync(Assembly assembly)
         {
             await CommandService.AddModulesAsync(assembly/*, Provider*/);
             var json = string.Empty;
-            BotConfig cfg = new BotConfig();
             if (!File.Exists("config.json"))
             {
-                json = JsonConvert.SerializeObject(cfg);
+                json = JsonConvert.SerializeObject(Config);
                 File.WriteAllText("config.json", json, new UTF8Encoding(false));
                 Console.WriteLine("Config file was not found, a new one was generated. Fill it with proper values and rerun this program");
                 Console.ReadKey();
@@ -31,11 +30,11 @@ namespace Botwyn.Services
                 return;
             }
             json = File.ReadAllText("config.json", new UTF8Encoding(false));
-            cfg = JsonConvert.DeserializeObject<BotConfig>(json);
+            Config = JsonConvert.DeserializeObject<BotConfig>(json);
 
 
-            await RestClient.LoginAsync(TokenType.Bot, cfg.DiscordToken);
-            await SocketClient.LoginAsync(TokenType.Bot, cfg.DiscordToken);
+            await RestClient.LoginAsync(TokenType.Bot, Config.DiscordToken);
+            await SocketClient.LoginAsync(TokenType.Bot, Config.DiscordToken);
             await SocketClient.StartAsync();
 
             HookEvents();
@@ -83,7 +82,7 @@ namespace Botwyn.Services
                 return Task.CompletedTask;
 
             var argPos = 0;
-            if (!message.HasCharPrefix('!', ref argPos))
+            if (!message.HasCharPrefix(Config.Token, ref argPos))
                 return Task.CompletedTask;
             var context = new CustomContext(SocketClient, message);
 
