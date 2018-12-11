@@ -164,7 +164,7 @@ namespace Botwyn.Modules
             #endregion
         }
 
-        [Command("Returning")]
+        [Command("Returning"), Name("Account Returning"), Summary("Displays a list of user who are returning for the next raid tier as-well as other information for the next raid tier.")]
         public async Task ReturningMembers()
         {
             var descriptionBuilder = new StringBuilder();
