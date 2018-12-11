@@ -47,6 +47,14 @@ namespace Botwyn.Handlers
             return account;
         }
 
+        public static List<UserAccount> GetReturningMemebers()
+        {
+            var result = from a in accounts
+                         where a.ReturningForNextRaid == true
+                         select a;
+            return result.ToList();
+        }
+
         private static UserAccount CreateUserAccount(ulong id)
         {
             var NewAccount = new UserAccount()
@@ -60,7 +68,8 @@ namespace Botwyn.Handlers
                 ReportMade = 0,
                 OwnReports = 0,
                 AdminReports = 0,
-                RaidsMissedWithReason = 0
+                RaidsMissedWithReason = 0,
+                ReturningForNextRaid = false
             };
             accounts.Add(NewAccount);
             SaveAccounts();
@@ -78,7 +87,8 @@ namespace Botwyn.Handlers
             UserReport = 60,
             AdminReport = 70,
             MissedRaidWithReason = 80,
-            MissedRaidNoReason = 90
+            MissedRaidNoReason = 90,
+            ReturningForNextRaid = 100
         }
 
         public static void AccountUpdate(SocketUser user, string param, UpdateType type)
@@ -95,42 +105,48 @@ namespace Botwyn.Handlers
             if (int.TryParse(param, out int number))
                 intresult = number;
 
+            var returning = false;
+            if (param.ToLower() == "true")
+                returning = true;
 
-                switch (type)
-                {
-                    case UpdateType.WowMain:
-                        account.MainChar = param;
-                        break;
-                    case UpdateType.GuildRank:
-                        account.GuildRank = param;
-                        break;
-                    case UpdateType.WowMainSpec:
-                        account.MainSpec = param;
-                        break;
-                    case UpdateType.WowAlt:
-                        account.WowAlt = param;
-                        break;
-                    case UpdateType.WowAltSpec:
-                        account.WowAltSpec = param;
-                        break;
-                    case UpdateType.ReportMade:
-                        account.ReportMade = account.ReportMade + intresult;
-                        break;
-                    case UpdateType.UserReport:
-                        account.OwnReports = account.OwnReports + intresult;
-                        break;
-                    case UpdateType.AdminReport:
-                        account.AdminReports = account.AdminReports + intresult;
-                        break;
-                    case UpdateType.MissedRaidWithReason:
-                        account.RaidsMissedWithReason = account.RaidsMissedWithReason + intresult;
-                        break;
-                    case UpdateType.MissedRaidNoReason:
-                        account.RaidsMissedNoReason = account.RaidsMissedNoReason + intresult;
-                        break;
-                    default:
-                        break;
-                }
+            switch (type)
+            {
+                case UpdateType.WowMain:
+                    account.MainChar = param;
+                    break;
+                case UpdateType.GuildRank:
+                    account.GuildRank = param;
+                    break;
+                case UpdateType.WowMainSpec:
+                    account.MainSpec = param;
+                    break;
+                case UpdateType.WowAlt:
+                    account.WowAlt = param;
+                    break;
+                case UpdateType.WowAltSpec:
+                    account.WowAltSpec = param;
+                    break;
+                case UpdateType.ReportMade:
+                    account.ReportMade = account.ReportMade + intresult;
+                    break;
+                case UpdateType.UserReport:
+                    account.OwnReports = account.OwnReports + intresult;
+                    break;
+                case UpdateType.AdminReport:
+                    account.AdminReports = account.AdminReports + intresult;
+                    break;
+                case UpdateType.MissedRaidWithReason:
+                    account.RaidsMissedWithReason = account.RaidsMissedWithReason + intresult;
+                    break;
+                case UpdateType.MissedRaidNoReason:
+                    account.RaidsMissedNoReason = account.RaidsMissedNoReason + intresult;
+                    break;
+                case UpdateType.ReturningForNextRaid:
+                    account.ReturningForNextRaid = returning;
+                    break;
+                default:
+                    break;
+            }
 
             accounts.Add(account);
             SaveAccounts();

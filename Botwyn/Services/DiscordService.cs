@@ -9,6 +9,7 @@ using System.IO;
 using System.Text;
 using Botwyn.Modules.Custom;
 using Victoria;
+using Botwyn.Handlers;
 
 namespace Botwyn.Services
 {
@@ -46,6 +47,19 @@ namespace Botwyn.Services
             SocketClient.Log += OnLog;
             SocketClient.Ready += OnReadyAsync;
             SocketClient.MessageReceived += OnMessageAsync;
+            SocketClient.ReactionAdded += OnReactionAdded;
+        }
+
+        private async Task OnReactionAdded(Cacheable<IUserMessage, ulong> cache, ISocketMessageChannel channel, SocketReaction reaction)
+        {
+            if(reaction.MessageId == GlobalProperties.ReactionMessageID)
+            {
+                var sendChannel = (ISocketMessageChannel)SocketClient.GetChannel(521861918760370177);
+                if(reaction.Emote.Name == "👌")
+                {
+                    
+                }
+            }
         }
 
         private Task OnLog(LogMessage log)

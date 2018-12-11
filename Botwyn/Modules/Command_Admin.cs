@@ -84,7 +84,7 @@ namespace Botwyn.Modules
 
         [Command("Purgeuser"), Name("Purgeuser"), Summary("Removes ``x`` amount of a user's last messages. (Default amount to purge is 100)")]
         [RequireUserPermission(GuildPermission.ManageMessages)]
-        public async Task Clear([Summary("The user who's messages you want to purge from the channel. (@ them)")]SocketGuildUser user, [Summary("The amount you want to purge.")]int amountOfMessagesToDelete = 100)
+        public async Task PurgeUser([Summary("The user who's messages you want to purge from the channel. (@ them)")]SocketGuildUser user, [Summary("The amount you want to purge.")]int amountOfMessagesToDelete = 100)
         {
             if (user == Context.User)
                 amountOfMessagesToDelete++; //Because it will count the purge command as a message

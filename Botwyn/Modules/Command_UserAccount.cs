@@ -26,6 +26,7 @@ namespace Botwyn.Modules
                 $"**Current Nickname**: {user.Nickname}\n" +
                 $"\n**__Guild Info__**\n" +
                 $"**Guild Rank**: {account.GuildRank}\n" +
+                $"**Returning For Next Tier**: {account.ReturningForNextRaid}\n" +
                 $"**Wow Main**: {account.MainChar}\n" +
                 $"**Main Spec**: {account.MainSpec}\n" +
                 $"**Main Alt**: {account.WowAlt}\n " +
@@ -67,6 +68,7 @@ namespace Botwyn.Modules
                 $"**Current Nickname**: {socketGuildUser.Nickname}\n" +
                 $"\n**__Guild Info__**\n" +
                 $"**Guild Rank**: {account.GuildRank}\n" +
+                $"**Returning For Next Tier**: {account.ReturningForNextRaid}\n" +
                 $"**Wow Main**: {account.MainChar}\n" +
                 $"**Main Spec**: {account.MainSpec}\n" +
                 $"**Main Alt**: {account.WowAlt}\n " +
@@ -162,6 +164,31 @@ namespace Botwyn.Modules
                 await ReplyAsync("", false, EmbedHandler.CreateEmbed("Account Updated", $"**The WoW Alt's Spec Has Been Set To: __{spec}__**", EmbedHandler.EmbedMessageType.Success, true));
             }
             #endregion
+
+            #region Returning For Next Raid
+            [Command("Returning"), Name("Account Update Returning"), Summary("Allows you to update your World of Warcraft Returning Status.")]
+            public async Task UpdateReturningForNextRaid([Summary("The current alt you have in World of Warcraft")][Remainder]string returning)
+                    => await UpdateReturningForNextRaid(Context.User, returning);
+
+            [Command("Returning"), Name("Account Update Returning"), Summary("Allows you to update your World of Warcraft Returning Status.")]
+            public async Task UpdateReturningForNextRaid(SocketUser user, [Summary("The current alt you have in World of Warcraft")][Remainder]string returning)
+            {
+                UserAccounts.AccountUpdate(user, returning, UserAccounts.UpdateType.ReturningForNextRaid);
+                await ReplyAsync("", false, EmbedHandler.CreateEmbed("Account Updated", $"**The Returning Status Spec Has Been Set To: __{returning}__**", EmbedHandler.EmbedMessageType.Success, true));
+            }
+            #endregion
+        }
+
+        [Command("Returning")]
+        public async Task ReturningMembers()
+        {
+            var descriptionBuilder = new StringBuilder();
+            var returningPlayers = UserAccounts.GetReturningMemebers();
+            foreach (var player in returningPlayers)
+            {
+                descriptionBuilder.Append($"``{player.MainChar}`` ");
+            }
+            await ReplyAsync("", false, EmbedHandler.CreateEmbed("Returning Players For Next Tier", $"{descriptionBuilder.ToString()} \n\n **We currently have __{returningPlayers.Count}/20__**", EmbedHandler.EmbedMessageType.Info, true));
         }
     }
 }

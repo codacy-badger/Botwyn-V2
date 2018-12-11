@@ -25,6 +25,7 @@
     <PackageReference Include="HyperEx" Version="1.0.10" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.0.0-preview.18572.1" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="NuGet.CommandLine" Version="4.7.1" />
     <PackageReference Include="OpenWeatherMap.Standard" Version="0.5.1" />
     <PackageReference Include="Victoria" Version="3.1.1" />
   </ItemGroup>
