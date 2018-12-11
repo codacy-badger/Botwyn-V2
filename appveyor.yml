@@ -1,0 +1,9 @@
+version: 1.0.{build}
+nuget sources
+Resgistered Sources:
+  1.  nuget.org [Enabled]
+      https://api.nuget.org/v3/index.json
+  2.  Discord [Enabled]
+      https://www.myget.org/F/discord-net/api/v3/index.json
+build_script:
+- cmd: dotnet build
